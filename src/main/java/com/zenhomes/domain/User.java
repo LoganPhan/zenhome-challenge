@@ -14,11 +14,13 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 @Entity
 @Table(name = "user")
 @Data
-public class User implements Serializable {
+@EqualsAndHashCode(callSuper = false)
+public class User extends Auditing implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -33,6 +35,6 @@ public class User implements Serializable {
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     private Set<UserProperty> userProperties;
     
-    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "tenant", fetch = FetchType.LAZY)
     private Set<RentalContract> rentalContracts;
 }

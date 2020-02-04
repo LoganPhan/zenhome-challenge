@@ -14,11 +14,13 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 @Entity
 @Table(name = "rental_property")
 @Data
-public class RentalProperty implements Serializable {
+@EqualsAndHashCode(callSuper = false)
+public class RentalProperty extends Auditing implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
