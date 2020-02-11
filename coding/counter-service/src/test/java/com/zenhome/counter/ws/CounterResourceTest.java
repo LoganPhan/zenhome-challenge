@@ -5,6 +5,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -30,7 +31,7 @@ import com.zenhomes.counter.service.mapper.CounterMapper;
 @AutoConfigureMockMvc
 public class CounterResourceTest {
 	
-	 private static final BigDecimal DEFAULT_AMOUNT_1 = new BigDecimal(1000.123);
+	 private static final BigDecimal DEFAULT_AMOUNT_1 = new BigDecimal(1000.123).setScale(3, RoundingMode.FLOOR);
 	 private static final Long DEFAULT_COUNTER_ID_1 = 1001L;
 	 
 	@Autowired
