@@ -34,7 +34,7 @@ GET /consumption_report?duration=24h
 }
 ```
 # Technologies
-System is created with microservice Architecture, Service Registration pattern and including some technical stuffs below  :
+System is created with microservice Architecture, Service Registration pattern and including some technical stuffs below:
 - Spring-boot(2.2.2.RELEASE) - standalone rest-api application
 - Spring-Cloud(Netflix-Eureka, Netflix-Zuul) - discovery, registry, loadbalancing service.
 - Spring-data-jpa - Implementing a data access layer of an application

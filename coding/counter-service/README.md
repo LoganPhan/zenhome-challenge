@@ -1,6 +1,12 @@
 # Counter-service
 This service allow user receive and collect data about energy consumption from different villages
 There are some data when application start.
+# DB Schema
+Column_name | Data-type | Description 
+------------ | ------------- | ------------- 
+id | Bigint | primary key (auto_inscrease)
+counter_id | Bigint | Village Id from (village-service)
+amount | decimal(12,3) | Energy amount of village
 # Building
 > ./mvnw clean package
 # Start Application
