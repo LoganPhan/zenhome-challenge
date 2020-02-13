@@ -12,7 +12,9 @@ Those services need to start-up by following command:
 > java -jar discovery-service/target/discovery-service.0.0.1.SNAPSHOT.jar
 ## counter-service:
 > cd counter-service
+
 > ./mvnw clean package
+
 > java -jar counter-service/target/counter-service.0.0.1.SNAPSHOT.jar
 ## village-service:
 > cd village-service
