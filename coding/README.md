@@ -3,20 +3,20 @@ System is created with microservice Architecture, Service Registration pattern
 # Deploy
 Those services need to start-up by following command:
 ## gateway-service:
-> cd gateway-service
-> ./mvnw clean package
+> cd gateway-service  
+> ./mvnw clean package  
 > java -jar gateway-service/target/gateway-service.0.0.1.SNAPSHOT.jar
 ## discovery-service:
-> cd discovery-service
-> ./mvnw clean package
+> cd discovery-service  
+> ./mvnw clean package  
 > java -jar discovery-service/target/discovery-service.0.0.1.SNAPSHOT.jar
 ## counter-service:
-> cd counter-service
-> ./mvnw clean package
+> cd counter-service  
+> ./mvnw clean package  
 > java -jar counter-service/target/counter-service.0.0.1.SNAPSHOT.jar
 ## village-service:
-> cd village-service
-> ./mvnw clean package
+> cd village-service  
+> ./mvnw clean package  
 > java -jar village-service/target/village-service.0.0.1.SNAPSHOT.jar
 ## Service Registration - Discovery-service
 Reference link: [Spring-Service-Segistration](https://spring.io/guides/gs/service-registration-and-discovery/)
