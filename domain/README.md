@@ -10,6 +10,7 @@ This repository is created to solve **Business logic between Landlord and Tenant
 |created_date | timestamp | create at|
 |last_modified_by | varchar(255) | update by {user_name}|
 |last_modified_date | timestamp | last modify at|
+
 **user**  
 Column_name | Data-type | Description 
 |------------ | ------------- | ------------- |
