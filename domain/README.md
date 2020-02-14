@@ -103,17 +103,24 @@ With data above said that Steve(tenant) have two contracts with John and Max. Fu
 **Querying contract**
 ```sql
 SELECT 
-  rc.id AS "Contract No",
-  u.name AS "Tenant Name",
-  up.name AS "Property name",
-  upu.name AS "Landlord name"
+    rc.id AS "Contract No",
+    u.name AS "Tenant Name",
+    up.name AS "Property name",
+    upu.name AS "Landlord name"
 FROM "zenhomes".rental_contract AS rc
 INNER JOIN "zenhomes".rental_property as rp
-  ON rp.rental_contract_id = rc.id
+    ON rp.rental_contract_id = rc.id
 INNER JOIN "zenhomes".user_property AS up
 INNER JOIN "zenhomes".user AS upu
-  ON upu.id = up.user_id
-  ON rp.user_property_id = up.id
+    ON upu.id = up.user_id
+    ON rp.user_property_id = up.id
 INNER JOIN "zenhomes".user AS u
-  ON u.id = rc.tenant_id
+    ON u.id = rc.tenant_id
 ```
+
+The resule are:  
+|Contract No | Tenant Name | Property name | Landlord name |
+|1 | Steve | Apartment-02 | John |
+|1 | Steve | Apartment-01 | John |
+|2 | Steve | FLOOR B | Max |
+|2 | John | FLOOR A | Max |
