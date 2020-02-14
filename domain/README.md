@@ -12,7 +12,7 @@ This repository is created to solve **Business logic between Landlord and Tenant
 |last_modified_date | timestamp | last modify at|
 
 **user**  
-Column_name | Data-type | Description |
+|Column_name | Data-type | Description |
 |------------ | ------------- | ------------- |
 |id | bigint | primarykey, auto inscrease|
 |name | varchar(255) | property name|
