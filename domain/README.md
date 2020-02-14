@@ -12,10 +12,11 @@ This repository is created to solve **Business logic between Landlord and Tenant
 |last_modified_date | timestamp | last modify at|
 
 **user**  
-Column_name | Data-type | Description 
+Column_name | Data-type | Description |
 |------------ | ------------- | ------------- |
 |id | bigint | primarykey, auto inscrease|
 |name | varchar(255) | property name|
+
 **user_property**  
 |Column_name | Data-type | Description |
 |------------ | ------------- | ------------- |
@@ -24,11 +25,13 @@ Column_name | Data-type | Description
 |type | varchar(255) | ENUM('BUILDING', 'APARTMENT', 'BLOCK', 'FLOOR'...)|
 |parent_id | bigint | link to id as know as relationship. Ex: Floor have multiple appartments|
 |user_id | bigint | FK to user(id). Property's owner|
+
 **rental_contract**  
 |Column_name | Data-type | Description |
 |------------ | ------------- | ------------- |
 |id | bigint | primarykey, auto inscrease|
 |tenant_id | bigint | Fk to user(id). User who rent property from landlord|
+
 **rental_property**  
 |Column_name | Data-type | Description |
 |------------ | ------------- | -------------|
