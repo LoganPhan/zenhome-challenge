@@ -125,3 +125,8 @@ The resule are:
 |1 | Steve | Apartment-01 | John |
 |2 | Steve | FLOOR B | Max |
 |2 | John | FLOOR A | Max |
+
+|Column_name | Data-type | Description |
+|------------ | ------------- | ------------- |
+|id | bigint | primarykey, auto inscrease|
+|tenant_id | bigint | Fk to user(id). User who rent property from landlord|
