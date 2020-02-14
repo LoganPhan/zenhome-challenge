@@ -5,31 +5,32 @@ This repository is created to solve **Business logic between Landlord and Tenant
 # Tables
 **Persistent_audit**  
 |Column_name | Data-type | Description |
+|------------ | ------------- | ------------- |
 |created_by | varchar(255) | created by {user_name}|
 |created_date | timestamp | create at|
 |last_modified_by | varchar(255) | update by {user_name}|
 |last_modified_date | timestamp | last modify at|
-
 **user**  
 Column_name | Data-type | Description 
+|------------ | ------------- | ------------- |
 |id | bigint | primarykey, auto inscrease|
 |name | varchar(255) | property name|
-
 **user_property**  
 |Column_name | Data-type | Description |
+|------------ | ------------- | ------------- |
 |id | bigint | primarykey, auto inscrease|
 |name | varchar(255) | user name|
 |type | varchar(255) | ENUM('BUILDING', 'APARTMENT', 'BLOCK', 'FLOOR'...)|
 |parent_id | bigint | link to id as know as relationship. Ex: Floor have multiple appartments|
 |user_id | bigint | FK to user(id). Property's owner|
-
 **rental_contract**  
 |Column_name | Data-type | Description |
+|------------ | ------------- | ------------- |
 |id | bigint | primarykey, auto inscrease|
 |tenant_id | bigint | Fk to user(id). User who rent property from landlord|
-
 **rental_property**  
 |Column_name | Data-type | Description |
+|------------ | ------------- | -------------|
 |id | bigint | primarykey, auto inscrease|
 |rental_contract_id | bigint | Fk to rental_contract(id)|
 |user_property_id | bigint | Fk to user_property(id)|
