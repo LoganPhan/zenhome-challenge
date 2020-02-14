@@ -3,19 +3,19 @@ This repository is created to solve **Business logic between Landlord and Tenant
 # Entity Relationship Diagram
 ![landlord-service](https://serving.photos.photobox.com/85933885ea1dd84c94183f5c5a733afc8cd93171dd6f2229ceea02e170b46569e21d6f62.jpg)
 # Tables
-Persistent_audit
-Column_name | Data-type | Description 
------------- | ------------- | ------------- 
-created_by | varchar(255) | created by {user_name}
-created_date | timestamp | create at
-last_modified_by | varchar(255) | update by {user_name}
-last_modified_date | timestamp | last modify at
-**user**
+Persistent_audit  
+|Column_name | Data-type | Description 
+|------------ | ------------- | ------------- 
+|created_by | varchar(255) | created by {user_name}
+|created_date | timestamp | create at
+|last_modified_by | varchar(255) | update by {user_name}
+|last_modified_date | timestamp | last modify at
+**user**  
 Column_name | Data-type | Description 
 ------------ | ------------- | ------------- 
 id | bigint | primarykey, auto inscrease
 name | varchar(255) | property name
-**user_property**
+**user_property**  
 Column_name | Data-type | Description 
 ------------ | ------------- | ------------- 
 id | bigint | primarykey, auto inscrease
@@ -23,12 +23,12 @@ name | varchar(255) | user name
 type | varchar(255) | ENUM('BUILDING', 'APARTMENT', 'BLOCK', 'FLOOR'...)
 parent_id | bigint | link to id as know as relationship. Ex: Floor have multiple appartments
 user_id | bigint | FK to user(id). Property's owner
-**rental_contract**
+**rental_contract**  
 Column_name | Data-type | Description 
 ------------ | ------------- | ------------- 
 id | bigint | primarykey, auto inscrease
 tenant_id | bigint | Fk to user(id). User who rent property from landlord
-**rental_property**
+**rental_property**  
 Column_name | Data-type | Description 
 ------------ | ------------- | ------------- 
 id | bigint | primarykey, auto inscrease
