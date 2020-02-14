@@ -94,6 +94,7 @@ Now that we have database structure. have been some sample data and we can move 
 **User_property table**: is dataset user's properties linked to user table by user_id. With data above said:  
 - John have a build naming is "Diamon Building". Inside the building it have one floor (Floor-1) and Floor-1 have two apartments(Apartment-01, Apartment-02). Those records has been linked by parent_id. Diamond Building have id = 1 and Floor-1 has id = 2 and parent_id = 1 mean Floor 1 is a part of Diamon Building, it considered as tree-node.  
 **Noted**: parent_id = 0 (zero) is root-node  
+
 **Rental_contract table**: Is a dataset of the Rental Agreements between Landlord and Tenant.
 Relationship between rental_contract and user is one-to-many and each record in user table will be consider as tenant or landlord was mapped by tenant_id and user(id)  
 **Rental_property table**: is dataset of properties that tenant wants to rent from landlord.
