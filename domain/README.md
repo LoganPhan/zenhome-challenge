@@ -120,6 +120,7 @@ INNER JOIN "zenhomes".user AS u
 
 The resule are:  
 |Contract No | Tenant Name | Property name | Landlord name |
+|------------ | ------------- | ------------- |
 |1 | Steve | Apartment-02 | John |
 |1 | Steve | Apartment-01 | John |
 |2 | Steve | FLOOR B | Max |
