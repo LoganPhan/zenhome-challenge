@@ -101,18 +101,19 @@ Relationship between rental_contract and user is one-to-many and each record in 
 With data above said that Steve(tenant) have two contracts with John and Max. Furthermore, John is landlord and tenant as well, because He have a contract with Max
 
 **Querying contract**
+```
 SELECT 
-	rc.id as "Contract No",
-	u.name as "Tenant Name",
-	up.name as "Property name",
-	upu.name as "Landlord name"
-FROM "zenhomes".rental_contract as rc
-inner join "zenhomes".rental_property as rp
-on rp.rental_contract_id = rc.id
-inner join "zenhomes".user_property as up
-inner join "zenhomes".user as upu
-on upu.id = up.user_id
-on rp.user_property_id = up.id
-inner join "zenhomes".user as u
-on u.id = rc.tenant_id
-
+  rc.id AS "Contract No",
+  u.name AS "Tenant Name",
+  up.name AS "Property name",
+  upu.name AS "Landlord name"
+FROM "zenhomes".rental_contract AS rc
+INNER JOIN "zenhomes".rental_property as rp
+  ON rp.rental_contract_id = rc.id
+INNER JOIN "zenhomes".user_property AS up
+INNER JOIN "zenhomes".user AS upu
+  ON upu.id = up.user_id
+  ON rp.user_property_id = up.id
+INNER JOIN "zenhomes".user AS u
+  ON u.id = rc.tenant_id
+```
