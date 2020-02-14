@@ -101,7 +101,7 @@ Relationship between rental_contract and user is one-to-many and each record in 
 With data above said that Steve(tenant) have two contracts with John and Max. Furthermore, John is landlord and tenant as well, because He have a contract with Max
 
 **Querying contract**
-```
+```sql
 SELECT 
   rc.id AS "Contract No",
   u.name AS "Tenant Name",
