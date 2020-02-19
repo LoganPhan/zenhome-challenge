@@ -92,7 +92,7 @@ Here are the tables, structured as illustrated above, with some data in them. No
 Now that we have database structure. have been some sample data and we can move on to explain the relationship as real-life.  
 **User table**: we have 3 records as know as John, Steve, Max  
 **User_property table**: is dataset user's properties linked to user table by user_id. With data above said:  
-- John have a build naming is "Diamon Building". Inside the building it have one floor (Floor-1) and Floor-1 have two apartments(Apartment-01, Apartment-02). Those records has been linked by parent_id. Diamond Building have id = 1 and Floor-1 has id = 2 and parent_id = 1 mean Floor 1 is a part of Diamon Building, it considered as tree-node.  
+- John have a build naming is "Diamon Building". Inside the building it have one floor (Floor-1) and Floor-1 have two apartments(Apartment-01, Apartment-02). Those records has been linked by parent_id. Diamond Building have id = 1 and Floor-1 has id = 2 and parent_id = 1 mean Floor 1 is a part of Diamon Building, it considered as data hierarchy.  
 **Noted**: parent_id = 0 (zero) is root-node  
 
 **Rental_contract table**: Is a dataset of the Rental Agreements between Landlord and Tenant.
@@ -100,7 +100,7 @@ Relationship between rental_contract and user is one-to-many and each record in 
 **Rental_property table**: is dataset of properties that tenant wants to rent from landlord.
 With data above said that Steve(tenant) have two contracts with John and Max. Furthermore, John is landlord and tenant as well, because He have a contract with Max
 
-**Querying contract**
+## Querying contract
 ```sql
 SELECT 
     rc.id AS "Contract No",
@@ -118,11 +118,143 @@ INNER JOIN "zenhomes".user AS u
     ON u.id = rc.tenant_id
 ```
 
-The resule are:  
+The result are:  
 |Contract No | Tenant Name | Property name| Landlord name|
 |------------ | ------------- | ------------- | -------------|
 |1 | Steve | Apartment-02 | John|
 |1 | Steve | Apartment-01 | John|
 |2 | Steve | FLOOR B | Max|
 |2 | John | FLOOR A | Max|
+## Querying user_property
+user_property is  hierarchy model, we can use recursive CTE to select data and the "child"
+**Select by id = 2 and the "child"**
+```sql
+WITH RECURSIVE properties_child AS (
+	SELECT 
+		up.id, 
+		up.name, 
+		up.type, 
+		up.parent_id 
+	FROM "zenhomes".user_property as up
+	WHERE up.id = 2
+	UNION
+	SELECT 
+		up.id, 
+		up.name, 
+		up.type, 
+		up.parent_id 
+	FROM "zenhomes".user_property as up
+	INNER JOIN properties_child as p
+	ON p.id = up.parent_id
+)SELECT * FROM properties_child;
+```
+result:
+|id | name | type | parent_id|
+|------------ | ------------- | ------------- | -------------|
+|2 | FLOOR 1 | FLOOR | 1|
+|3 | APARTMENT-01 | APARTMENT | 2|
+|4 | APARTMENT-02 | APARTMENT | 2|
+The result said: Floor 1 have two apartments(Apartment-01, apartment-02)
 
+**Select by id = 3 and the "parent"**
+```sql
+WITH RECURSIVE properties_parent AS (
+	SELECT 
+		up.id, 
+		up.name, 
+		up.type, 
+		up.parent_id 
+	FROM "zenhomes".user_property as up
+	WHERE up.id = 2
+	UNION
+	SELECT 
+		up.id, 
+		up.name, 
+		up.type, 
+		up.parent_id 
+	FROM "zenhomes".user_property as up
+	INNER JOIN properties_parent as p
+	ON p.parent_id = up.id
+) SELECT * FROM properties_parent;
+```
+result:
+|id | name | type | parent_id|
+|------------ | ------------- | ------------- | -------------|
+|3 | Apartment-01 | APARTMENT | 2|
+|3 | FLOOR 1 | FLOOR  | 1|
+|4 | Diamon BUILDING | BUILDING | 0|
+The result said: Apartment-01 belong to Floor 1 and Floor 1 belong to Diamond Building
+
+**Select by id = 2 and get the "parent" and the "child"**
+```sql
+WITH RECURSIVE properties_child AS (
+	SELECT 
+		up.id, 
+		up.name, 
+		up.type, 
+		up.parent_id 
+	FROM "zenhomes".user_property as up
+	WHERE up.id = 2
+	UNION
+	SELECT 
+		up.id, 
+		up.name, 
+		up.type, 
+		up.parent_id 
+	FROM "zenhomes".user_property as up
+	INNER JOIN properties_child as p
+	ON p.id = up.parent_id
+), properties_parent AS (
+	SELECT 
+		up.id, 
+		up.name, 
+		up.type, 
+		up.parent_id 
+	FROM "zenhomes".user_property as up
+	WHERE up.id = 2
+	UNION
+	SELECT 
+		up.id, 
+		up.name, 
+		up.type, 
+		up.parent_id 
+	FROM "zenhomes".user_property as up
+	INNER JOIN properties_parent as p
+	ON p.parent_id = up.id
+)select * from properties_child union select * from properties_parent;
+```
+result:
+|id | name | type | parent_id|
+|------------ | ------------- | ------------- | -------------|
+|2 | FLOOR 1 | FLOOR | 1|
+|3 | Apartment-01  | APARTMENT | 2|
+|1 | Diamon BUILDING | BUILDING | 0|
+|4 | Apartment-02 | APARTMENT | 2|
+The result return the hierarchy of "FLOOR 1". The "parent" is "Diamon Building" and the "child" are (Apartment-01, Apartment-02)
+We can add filtering as well:
+```sql
+WITH RECURSIVE properties_child AS (
+	SELECT 
+		up.id, 
+		up.name, 
+		up.type, 
+		up.parent_id 
+	FROM "zenhomes".user_property as up
+	WHERE up.id = 1
+	UNION
+	SELECT 
+		up.id, 
+		up.name, 
+		up.type, 
+		up.parent_id 
+	FROM "zenhomes".user_property as up
+	INNER JOIN properties_child as p
+	ON p.id = up.parent_id
+)SELECT * FROM properties_child where type ='APARTMENT';
+```
+result:
+|id | name | type | parent_id|
+|------------ | ------------- | ------------- | -------------|
+|3 | Apartment-01  | APARTMENT | 2|
+|4 | Apartment-02 | APARTMENT | 2|
+The query return the Building's apartments with id = 1.
