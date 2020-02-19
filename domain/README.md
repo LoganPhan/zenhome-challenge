@@ -153,7 +153,7 @@ result:
 |------------ | ------------- | ------------- | -------------|
 |2 | FLOOR 1 | FLOOR | 1|
 |3 | APARTMENT-01 | APARTMENT | 2 |
-|4 | APARTMENT-02 | APARTMENT | 2 |
+|4 | APARTMENT-02 | APARTMENT | 2 |  
 The result said: Floor 1 have two apartments(Apartment-01, apartment-02)
 
 **Select by id = 3 and the "parent"**
@@ -182,7 +182,7 @@ result:
 |------------ | ------------- | ------------- | -------------|
 |3 | Apartment-01 | APARTMENT | 2 |
 |3 | FLOOR 1 | FLOOR  | 1 |
-|4 | Diamon BUILDING | BUILDING | 0 |
+|4 | Diamon BUILDING | BUILDING | 0 |  
 The result said: Apartment-01 belong to Floor 1 and Floor 1 belong to Diamond Building
 
 **Select by id = 2 and get the "parent" and the "child"**
@@ -229,7 +229,7 @@ result:
 |2 | FLOOR 1 | FLOOR | 1 |
 |3 | Apartment-01  | APARTMENT | 2 |
 |1 | Diamon BUILDING | BUILDING | 0 |
-|4 | Apartment-02 | APARTMENT | 2 |
+|4 | Apartment-02 | APARTMENT | 2 |  
 The result return the hierarchy of "FLOOR 1". The "parent" is "Diamon Building" and the "child" are (Apartment-01, Apartment-02)
 We can add filtering as well:
 ```sql
@@ -256,5 +256,5 @@ result:
 |id | name | type | parent_id|
 |------------ | ------------- | ------------- | -------------|
 |3 | Apartment-01  | APARTMENT | 2 |
-|4 | Apartment-02 | APARTMENT | 2 |
+|4 | Apartment-02 | APARTMENT | 2 |  
 The query return the Building's apartments with id = 1.
