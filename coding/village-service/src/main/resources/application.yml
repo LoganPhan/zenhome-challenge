@@ -4,28 +4,34 @@ spring:
     application:
         name: village-services
     datasource:
-        driver-class-name: org.h2.Driver
-        password: sa
-        url: jdbc:h2:mem:zenhomes;
-        username: sa
+       driver-class-name: org.postgresql.Driver
+       url: jdbc:postgresql://localhost:5432/postgres?currentSchema=sorieshouse
+       username: postgres
+       password: root
+        #driver-class-name: org.h2.Driver
+        #password: sa
+        #url: jdbc:h2:mem:zenhomes;
+        #username: sa
     h2:
         console:
             enabled: true
     jpa:
+        show-sql: true
         properties:
             hibernate:
+                format_sql: true
                 dialect: org.hibernate.dialect.H2Dialect
                 jdbc:
                     lob:
                         non_contextual_creation: true
     liquibase:
         change-log: classpath:/config/liquibase/master.xml
-eureka:
-    client:
-        service-url:
-            defaultZone: http://localhost:8081/eureka/
-        healthcheck:
-            enabled: true
+#eureka:
+#    client:
+#        service-url:
+#            defaultZone: http://localhost:8081/eureka/
+#        healthcheck:
+#            enabled: true
 logging:
     level:
         liquibase: INFO

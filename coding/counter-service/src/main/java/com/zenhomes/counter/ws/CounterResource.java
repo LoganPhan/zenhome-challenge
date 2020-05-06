@@ -48,7 +48,7 @@ public class CounterResource {
 	}
 
 	@GetMapping("/consumption_report")
-	public ResponseEntity<ConsumptionReport> getConsumptionReport(@RequestParam FilterDate duration) {
+	public ResponseEntity<ConsumptionReport> getConsumptionReport(@RequestParam(required = false) FilterDate duration) {
 		log.debug("Request to insert energy amount for counter");
 		return new ResponseEntity<>(counterService.getConsumptionReport(duration), HttpStatus.OK);
 

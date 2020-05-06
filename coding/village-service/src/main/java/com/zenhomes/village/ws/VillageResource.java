@@ -76,4 +76,33 @@ public class VillageResource {
 	            .body(dto);
 	}
 	
+	/**
+	 * {@code GET  /counter} : get counter informations
+	 *
+	 * @param criteria
+	 *            the criteria which the requested entities should match.
+	 * @return the {@link ResponseEntity} with status {@code 200 (OK)} in body.
+	 * @throws JsonProcessingException
+	 */
+	@GetMapping(value = "/checkout")
+	public ResponseEntity<Void> checkout(@RequestParam Long id, @RequestParam Long quantity) throws JsonProcessingException {
+		log.debug("Request get information additional information counter");
+		villageService.getCheckout(id, quantity);
+		return new ResponseEntity<Void>(HttpStatus.OK);
+	}
+	
+	/**
+	 * {@code GET  /counter} : get counter informations
+	 *
+	 * @param criteria
+	 *            the criteria which the requested entities should match.
+	 * @return the {@link ResponseEntity} with status {@code 200 (OK)} in body.
+	 * @throws JsonProcessingException
+	 */
+	@GetMapping(value = "/checkout2")
+	public ResponseEntity<Void> checkout2(@RequestParam Long id, @RequestParam Long quantity) throws JsonProcessingException {
+		log.debug("Request get information additional information counter");
+		villageService.getCheckout2(id, quantity);
+		return new ResponseEntity<Void>(HttpStatus.OK);
+	}
 }

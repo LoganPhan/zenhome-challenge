@@ -20,5 +20,8 @@ public class VillageDto implements Serializable {
     
     @JsonProperty("village_name")
     private String name;
+    
+    private Long quantity;
 
+    
 }

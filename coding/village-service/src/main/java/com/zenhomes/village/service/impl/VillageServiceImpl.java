@@ -5,6 +5,7 @@ import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.zenhomes.village.domain.Village;
 import com.zenhomes.village.repository.VillageRepository;
@@ -45,5 +46,48 @@ public class VillageServiceImpl implements VillageService {
 	@Override
 	public List<VillageDto> getVillages() {
 		return villageRepo.findAll().stream().map(villageMapper::toDto).collect(Collectors.toList());
+	}
+
+	@Override
+	@Transactional
+	public void getCheckout(Long id, Long quantity) {
+		 doCheckout(id, quantity);
+	}
+	
+	@Override
+	@Transactional
+	public void getCheckout2(Long id, Long quantity) {
+		doCheckout2(id, quantity);
+	}
+	
+	private void doCheckout(Long id, Long quantity) {
+		System.out.println(String.format("Thread 1: %s  id: %s ----- quantity: %s", Thread.currentThread().getName(), id, quantity));
+		try {
+			Village village = villageRepo.findCheckoutById(id);
+			System.out.println(String.format("Quantity is %s and current Quantity is: %s", village.getQuantity(), quantity));
+			Thread.sleep(10000);
+			if(village.getQuantity() < quantity) {
+				System.out.println("AAA -> quantity: " + quantity);
+			}else {
+				System.out.println(String.format("BBBBBBBBBBBBBBBBBBBBBBb + %s", quantity));
+				village.setQuantity(village.getQuantity() - quantity);
+				villageRepo.save(village);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	private void doCheckout2(Long id, Long quantity) {
+		System.out.println(String.format("Thread 2: %s id: %s ----- quantity: %s", Thread.currentThread().getName(),id, quantity));
+		try {
+			Village village = villageRepo.findCheckoutById(id);
+			System.out.println(String.format("Quantity is %s and current Quantity is: %s", village.getQuantity(), quantity));
+			village.setQuantity(village.getQuantity() - quantity);
+			villageRepo.save(village);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 }

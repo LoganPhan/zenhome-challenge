@@ -38,4 +38,14 @@ public interface VillageService {
 	 * @return
 	 */
 	void deleteAll();
+	
+
+	/**
+	 * Remove All village
+	 * @param dto
+	 * @return
+	 */
+	void getCheckout(Long id, Long quantity) ;
+	
+	void getCheckout2(Long id, Long quantity);
 }

@@ -1,4 +1,4 @@
-id;name
-1;Villarriba
-2;Villabajo
-3;VillaData
+id;name;quantity;version
+1;Villarriba;10;0
+2;Villabajo;20;0
+3;VillaData;30;0
