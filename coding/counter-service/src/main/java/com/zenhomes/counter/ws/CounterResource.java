@@ -6,6 +6,7 @@ import java.net.URISyntaxException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -54,4 +55,23 @@ public class CounterResource {
 
 	}
 
+	@GetMapping("/")
+	public ResponseEntity<Page<CounterDto>> get() {
+		log.debug("Request to insert energy amount for counter");
+		return new ResponseEntity<Page<CounterDto>>(counterService.getAll(), HttpStatus.OK);
+	}
+
+	@GetMapping("/registration")
+	public ResponseEntity<String> getRegistration() {
+		log.debug("Request to insert energy amount for counter");
+		return new ResponseEntity<String>(counterService.getRegistration(), HttpStatus.OK);
+
+	}
+
+	@PostMapping("/registration")
+	public ResponseEntity<String> postRegistration(@RequestParam String execution) {
+		log.debug("Request to insert energy amount for counter");
+		return new ResponseEntity<String>(counterService.postRegistration(execution), HttpStatus.OK);
+
+	}
 }

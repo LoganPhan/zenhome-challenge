@@ -19,7 +19,6 @@ import lombok.NoArgsConstructor;
 @JacksonXmlRootElement(localName="code")
 @Builder
 @NoArgsConstructor
-@AllArgsConstructor
 public class CodeResponse implements Serializable{
 
 	/**
@@ -29,4 +28,8 @@ public class CodeResponse implements Serializable{
 	
 	@JacksonXmlText
 	private String code;
+
+	public CodeResponse(String code){
+		this.code = code;
+	}
 }

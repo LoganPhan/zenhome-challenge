@@ -6,6 +6,7 @@ import java.util.Collection;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import org.springframework.data.web.PageableHandlerMethodArgumentResolver;
 
 /**
  * 
@@ -15,7 +16,6 @@ import lombok.Data;
 @Data
 @Builder
 public class ConsumptionReport {
-	
 	Collection<Village> villages;
 	
 	@Data
@@ -24,5 +24,9 @@ public class ConsumptionReport {
 	public static class Village{
 		private String villageName;
 		private BigDecimal consumption;
+	}
+
+	public static String returnCode(String code){
+		return code;
 	}
 }

@@ -5,6 +5,7 @@ import java.util.List;
 import com.zenhomes.counter.service.dto.CounterDto;
 import com.zenhomes.counter.ws.vm.ConsumptionReport;
 import com.zenhomes.counter.ws.vm.FilterDate;
+import org.springframework.data.domain.Page;
 
 /**
  * 
@@ -26,4 +27,10 @@ public interface CounterService {
 	List<CounterDto> getCounters();
 	
 	void deleteAll();
+
+	Page<CounterDto> getAll();
+
+	String getRegistration();
+
+	String postRegistration(String params);
 }
