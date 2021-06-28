@@ -234,6 +234,7 @@ result:
 |4 | Apartment-02 | APARTMENT | 2 |  
 
 The result return the hierarchy of "FLOOR 1". The "parent" is "Diamon Building" and the "child" are (Apartment-01, Apartment-02)
+
 We can add filtering as well:
 ```sql
 WITH RECURSIVE properties_child AS (
